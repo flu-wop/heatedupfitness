@@ -1,0 +1,58 @@
+import Link from "next/link";
+import { BUSINESS } from "@/lib/data";
+
+export default function Footer() {
+  return (
+    <footer className="bg-ink text-mist border-t border-white/10">
+      <div className="mx-auto max-w-6xl px-6 py-12 grid gap-10 md:grid-cols-3">
+        <div>
+          <div className="font-display text-xl text-cream mb-3">
+            HEATED<span className="text-heat-gradient">UP</span>
+          </div>
+          <p className="text-sm leading-relaxed">{BUSINESS.tagline}</p>
+          <p className="text-xs mt-3 opacity-70">{BUSINESS.hashtag}</p>
+        </div>
+        <div>
+          <h3 className="font-body font-semibold text-cream text-sm mb-3 uppercase tracking-wide">
+            Contact
+          </h3>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <a href={`mailto:${BUSINESS.email}`} className="hover:text-cream">
+                {BUSINESS.email}
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${BUSINESS.phoneRaw}`} className="hover:text-cream">
+                {BUSINESS.phone}
+              </a>
+            </li>
+            <li className="opacity-70">{BUSINESS.serviceArea}</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-body font-semibold text-cream text-sm mb-3 uppercase tracking-wide">
+            Legal
+          </h3>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link href="/legal/privacy" className="hover:text-cream">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link href="/legal/terms" className="hover:text-cream">Terms of Service</Link>
+            </li>
+            <li>
+              <Link href="/legal/refund" className="hover:text-cream">Refund Policy</Link>
+            </li>
+            <li>
+              <Link href="/legal/waiver" className="hover:text-cream">Health & Liability Waiver</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-white/10 py-6 text-center text-xs opacity-60">
+        © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
+      </div>
+    </footer>
+  );
+}
