@@ -8,6 +8,36 @@ function getResend(): Resend {
   return _resend;
 }
 
+// Stripe already charged the customer by the time this fires — a failed DB
+// write here means real money moved with no record of it. Best-effort: if
+// this alert itself fails to send, that's only logged, never re-thrown.
+export async function sendWebhookFailureAlert(details: { sessionId: string; error: string }) {
+  try {
+    const resend = getResend();
+    const from = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const ownerEmail = process.env.RESEND_TO_EMAIL;
+    if (!ownerEmail) {
+      console.error("[webhook-failure-alert] RESEND_TO_EMAIL not set — cannot alert:", details);
+      return;
+    }
+    await resend.emails.send({
+      from: `HeatedUpFitness <${from}>`,
+      to: ownerEmail,
+      subject: `⚠️ Payment received but order record failed — session ${details.sessionId}`,
+      html: `
+        <p><strong>Manual reconciliation needed.</strong></p>
+        <p>Stripe confirmed payment for session <code>${details.sessionId}</code>, but recording
+        or delivering the order failed.</p>
+        <p>The customer was charged. Check Stripe's dashboard for this session and follow up
+        with the customer directly.</p>
+        <p style="color:#888;font-size:13px">Error: ${details.error}</p>
+      `,
+    });
+  } catch (err) {
+    console.error("[webhook-failure-alert] Failed to send alert:", err);
+  }
+}
+
 export async function sendBookingConfirmation(opts: {
   to: string;
   name: string;

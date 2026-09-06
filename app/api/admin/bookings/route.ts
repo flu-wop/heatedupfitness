@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb, ensureTables } from "@/lib/db";
+import { isAdminAuthed } from "@/lib/admin-auth";
 
-export async function GET(req: NextRequest) {
-  const password = req.nextUrl.searchParams.get("password");
-  if (password !== process.env.ADMIN_PASSWORD) {
+export async function GET(_req: NextRequest) {
+  if (!(await isAdminAuthed())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

@@ -21,13 +21,26 @@ export default function AdminBookings() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    const res = await fetch(`/api/admin/bookings?password=${encodeURIComponent(password)}`);
+
+    const loginRes = await fetch("/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    if (!loginRes.ok) {
+      const data = await loginRes.json().catch(() => ({}));
+      setError(data.error || "Incorrect password");
+      return;
+    }
+
+    const res = await fetch("/api/admin/bookings");
     if (!res.ok) {
-      setError("Incorrect password");
+      setError("Logged in, but failed to load bookings");
       return;
     }
     const data = await res.json();
     setBookings(data.bookings);
+    setPassword("");
   }
 
   if (!bookings) {

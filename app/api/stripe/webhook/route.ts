@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { getDb, ensureTables } from "@/lib/db";
-import { sendProductDelivery } from "@/lib/email";
+import { sendProductDelivery, sendWebhookFailureAlert } from "@/lib/email";
 import { PRODUCTS } from "@/lib/data";
 import { randomUUID } from "crypto";
 
@@ -31,9 +31,33 @@ export async function POST(req: NextRequest) {
     const email = session.customer_details?.email;
     const product = PRODUCTS.find((p) => p.id === productId);
 
-    if (product && email) {
+    if (!product || !email) {
+      // Payment succeeded but we can't identify what was bought or who to
+      // send it to — this used to be a silent no-op. It's now the same
+      // "needs a human immediately" case as a DB failure.
+      console.error(`Webhook missing product or email for session ${session.id}`, { productId, email });
+      await sendWebhookFailureAlert({
+        sessionId: session.id,
+        error: `Missing product (${productId ?? "none"}) or customer email for a completed checkout.`,
+      });
+      return NextResponse.json({ received: true, error: "Missing product/email, will retry" }, { status: 500 });
+    }
+
+    try {
       await ensureTables();
       const db = getDb();
+
+      // IDEMPOTENCY: Stripe retries webhook delivery on timeout/non-200 —
+      // without this check, a retry would insert a duplicate order row and
+      // send the product a second time.
+      const existing = await db.execute({
+        sql: `SELECT id FROM orders WHERE stripe_session_id = ?`,
+        args: [session.id],
+      });
+      if (existing.rows.length > 0) {
+        return NextResponse.json({ received: true, duplicate: true });
+      }
+
       await db.execute({
         sql: `INSERT INTO orders (id, product_id, email, stripe_session_id, amount_cents, created_at)
               VALUES (?, ?, ?, ?, ?, ?)`,
@@ -48,6 +72,10 @@ export async function POST(req: NextRequest) {
       });
 
       await sendProductDelivery({ to: email, productName: product.name });
+    } catch (err: any) {
+      console.error("[stripe-webhook] Order DB write or delivery failed:", err);
+      await sendWebhookFailureAlert({ sessionId: session.id, error: err?.message || String(err) });
+      return NextResponse.json({ received: true, error: "DB write failed, will retry" }, { status: 500 });
     }
   }
 
