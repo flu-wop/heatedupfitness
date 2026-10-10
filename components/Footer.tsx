@@ -52,6 +52,10 @@ export default function Footer() {
       </div>
       <div className="border-t border-white/10 py-6 text-center text-xs opacity-60">
         © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
+        <span className="mt-1 block">
+          Designed by{" "}
+          <a href="https://in-flu-ential.vercel.app" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">IN-FLU-ENTIAL</a>
+        </span>
       </div>
     </footer>
   );
