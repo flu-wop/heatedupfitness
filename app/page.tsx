@@ -1,14 +1,31 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BUSINESS, CREDENTIALS, SERVICES, TESTIMONIALS, TEAM_NO_FEARS } from "@/lib/data";
+import { MEDIA, mediaExists } from "@/lib/media";
+import MediaSlot from "@/components/MediaSlot";
 
 export default function Home() {
+  const heroHasMedia = mediaExists(MEDIA.hero.video) || mediaExists(MEDIA.hero.poster);
   return (
     <>
       {/* HERO */}
-      <section className="relative bg-ink text-cream overflow-hidden grain">
-        <div className="absolute inset-0 bg-plum-glow" />
-        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-24 grid md:grid-cols-2 gap-12 items-center">
+      <section className={`relative bg-ink text-cream overflow-hidden grain ${heroHasMedia ? "min-h-[88vh] flex items-center" : ""}`}>
+        {heroHasMedia ? (
+          <>
+            <MediaSlot
+              video={MEDIA.hero.video}
+              image={MEDIA.hero.poster}
+              alt="Mikia Gumms training a client"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/10" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-plum-glow" />
+        )}
+        <div className={`relative mx-auto w-full max-w-6xl px-6 pt-20 pb-24 grid gap-12 items-center ${heroHasMedia ? "md:grid-cols-1" : "md:grid-cols-2"}`}>
           <div>
             <p className="font-body text-sm uppercase tracking-[0.2em] text-pink mb-4">
               {BUSINESS.hashtag} · Westbank New Orleans
@@ -38,16 +55,18 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="relative aspect-square max-w-sm mx-auto">
-            <div className="absolute inset-0 glow-ring rounded-full" />
-            <Image
-              src="/images/logo-dark.jpg"
-              alt="HeatedUpFitness logo"
-              fill
-              className="object-contain relative"
-              priority
-            />
-          </div>
+          {!heroHasMedia && (
+            <div className="relative aspect-square max-w-sm mx-auto">
+              <div className="absolute inset-0 glow-ring rounded-full" />
+              <Image
+                src="/images/logo-dark.jpg"
+                alt="HeatedUpFitness logo"
+                fill
+                className="object-contain relative"
+                priority
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -59,6 +78,33 @@ export default function Home() {
           <span>{CREDENTIALS.yearsExperience}+ Years Experience</span>
           <span className="opacity-60">|</span>
           <span>{TEAM_NO_FEARS.label}</span>
+        </div>
+      </section>
+
+      {/* REELS */}
+      <section className="bg-ink text-cream">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <p className="font-body text-sm uppercase tracking-[0.2em] text-pink mb-3">In the gym</p>
+          <h2 className="font-display text-3xl md:text-4xl mb-10">See the work</h2>
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-4 md:overflow-visible">
+            {MEDIA.reels.map((reel, i) => (
+              <figure
+                key={i}
+                className="relative shrink-0 w-[62%] sm:w-[40%] md:w-auto snap-start aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 card-lift"
+              >
+                <MediaSlot
+                  video={reel.video}
+                  image={reel.poster}
+                  alt={`${reel.label} clip`}
+                  label={reel.label}
+                  sizes="(min-width: 768px) 25vw, 62vw"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-ink/90 to-transparent font-body text-sm font-semibold">
+                  {reel.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -109,6 +155,36 @@ export default function Home() {
                 >
                   {service.cta} →
                 </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FULL-BLEED BAND */}
+      <section className="relative h-[55vh] min-h-[360px] bg-ink text-cream overflow-hidden">
+        <MediaSlot image={MEDIA.band} alt="Training session" label="Full-width photo" sizes="100vw" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/40" />
+        <div className="relative h-full mx-auto max-w-6xl px-6 flex items-end pb-12">
+          <p className="font-display text-4xl md:text-6xl leading-tight max-w-2xl">
+            I will. I am. <span className="text-heat-gradient">I can.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <h2 className="font-display text-3xl text-plum mb-10">Stay Heated</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {MEDIA.gallery.map((file, i) => (
+              <div
+                key={file}
+                className={`relative overflow-hidden rounded-xl bg-ink ${
+                  i === 0 || i === 5 ? "md:col-span-2 md:row-span-2 aspect-square" : "aspect-[4/5]"
+                }`}
+              >
+                <MediaSlot image={file} alt={`HeatedUpFitness training photo ${i + 1}`} label="Photo" />
               </div>
             ))}
           </div>

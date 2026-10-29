@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CREDENTIALS, BUSINESS, TEAM_NO_FEARS } from "@/lib/data";
+import { MEDIA } from "@/lib/media";
+import MediaSlot from "@/components/MediaSlot";
 
 export default function About() {
   return (
@@ -8,12 +10,13 @@ export default function About() {
       <section className="bg-ink text-cream grain">
         <div className="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10">
-            {/* PLACEHOLDER — swap for a real professional photo of Mikia */}
-            <div className="absolute inset-0 bg-plum-glow flex items-center justify-center">
-              <span className="font-body text-mist text-sm px-8 text-center">
-                PLACEHOLDER — professional photo of Mikia goes here
-              </span>
-            </div>
+            <MediaSlot
+              image={MEDIA.portrait}
+              alt="Mikia Gumms, ISSA certified personal trainer"
+              label="Photo of Mikia"
+              priority
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
           </div>
           <div>
             <h1 className="font-display text-4xl mb-2">About Mikia</h1>
