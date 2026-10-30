@@ -2,6 +2,13 @@ import { Resend } from "resend";
 
 let _resend: Resend | null = null;
 
+// Every user-supplied value that lands in an HTML email goes through this.
+export function esc(v: unknown): string {
+  return String(v ?? "").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!)
+  );
+}
+
 function getResend(): Resend {
   if (_resend) return _resend;
   _resend = new Resend(process.env.RESEND_API_KEY!);
@@ -26,11 +33,11 @@ export async function sendWebhookFailureAlert(details: { sessionId: string; erro
       subject: `⚠️ Payment received but order record failed — session ${details.sessionId}`,
       html: `
         <p><strong>Manual reconciliation needed.</strong></p>
-        <p>Stripe confirmed payment for session <code>${details.sessionId}</code>, but recording
+        <p>Stripe confirmed payment for session <code>${esc(details.sessionId)}</code>, but recording
         or delivering the order failed.</p>
         <p>The customer was charged. Check Stripe's dashboard for this session and follow up
         with the customer directly.</p>
-        <p style="color:#888;font-size:13px">Error: ${details.error}</p>
+        <p style="color:#888;font-size:13px">Error: ${esc(details.error)}</p>
       `,
     });
   } catch (err) {
@@ -41,6 +48,8 @@ export async function sendWebhookFailureAlert(details: { sessionId: string; erro
 export async function sendBookingConfirmation(opts: {
   to: string;
   name: string;
+  phone?: string;
+  message?: string;
   date: string;
   time: string;
   mode: string;
@@ -48,41 +57,56 @@ export async function sendBookingConfirmation(opts: {
 }) {
   const resend = getResend();
   const from = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+  const errors: unknown[] = [];
 
-  await resend.emails.send({
-    from: `HeatedUpFitness <${from}>`,
-    to: opts.to,
-    subject: "You're booked with HeatedUpFitness!",
-    html: `
+  // Owner notice goes first and is independent: Mikia hears about the booking
+  // even if the customer's confirmation fails (and vice versa).
+  const ownerEmail = process.env.RESEND_TO_EMAIL;
+  if (ownerEmail) {
+    try {
+      await resend.emails.send({
+        from: `HeatedUpFitness <${from}>`,
+        to: ownerEmail,
+        subject: `New booking: ${opts.name.replace(/[\r\n]+/g, " ")}`,
+        html: `<p><strong>${esc(opts.name)}</strong> booked a consult for ${esc(opts.date)} at ${esc(opts.time)} (${esc(opts.mode)}).</p>
+<p>Email: ${esc(opts.to)}<br/>Phone: ${esc(opts.phone || "—")}</p>
+<p>Goals: ${esc(opts.message || "—")}</p>`,
+      });
+    } catch (err) {
+      errors.push(err);
+    }
+  }
+
+  try {
+    await resend.emails.send({
+      from: `HeatedUpFitness <${from}>`,
+      to: opts.to,
+      subject: "You're booked with HeatedUpFitness!",
+      html: `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
-        <h2 style="color:#C42D8E;">You're booked, ${opts.name}!</h2>
-        <p>Your consult is set for <strong>${opts.date} at ${opts.time}</strong> (${opts.mode}).</p>
+        <h2 style="color:#C42D8E;">You're booked, ${esc(opts.name)}!</h2>
+        <p>Your consult is set for <strong>${esc(opts.date)} at ${esc(opts.time)}</strong> (${esc(opts.mode)}).</p>
         <p>Mikia will follow up shortly to confirm details.</p>
         <p style="color:#888;font-size:12px;">#stayheated</p>
       </div>
     `,
-    ...(opts.icsContent
-      ? {
-          attachments: [
-            {
-              filename: "consult.ics",
-              content: Buffer.from(opts.icsContent).toString("base64"),
-            },
-          ],
-        }
-      : {}),
-  });
-
-  // Notify the owner too
-  const ownerEmail = process.env.RESEND_TO_EMAIL;
-  if (ownerEmail) {
-    await resend.emails.send({
-      from: `HeatedUpFitness <${from}>`,
-      to: ownerEmail,
-      subject: `New booking: ${opts.name}`,
-      html: `<p>${opts.name} booked a consult for ${opts.date} at ${opts.time} (${opts.mode}).</p>`,
+      ...(opts.icsContent
+        ? {
+            attachments: [
+              {
+                filename: "consult.ics",
+                content: Buffer.from(opts.icsContent).toString("base64"),
+              },
+            ],
+          }
+        : {}),
     });
+  } catch (err) {
+    errors.push(err);
   }
+
+  // Surface (not swallow) — the route logs this; the booking itself is already saved.
+  if (errors.length) throw new Error(`Booking email failed (${errors.length}): ${String(errors[0])}`);
 }
 
 export async function sendProductDelivery(opts: { to: string; productName: string }) {
@@ -95,7 +119,7 @@ export async function sendProductDelivery(opts: { to: string; productName: strin
     html: `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
         <h2 style="color:#C42D8E;">Thanks for your purchase!</h2>
-        <p>Your <strong>${opts.productName}</strong> is attached / linked below.</p>
+        <p>Your <strong>${esc(opts.productName)}</strong> is attached / linked below.</p>
         <p style="color:#888;font-size:12px;">PLACEHOLDER — attach the real PDF or download link here once the plan content is finalized.</p>
       </div>
     `,
