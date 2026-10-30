@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
   robots: { index: false, follow: false }, // preview: remove at launch
   description:
-    "ISSA-certified personal trainer serving Westbank New Orleans — in-person and online coaching, custom meal plans, and workout programs. Where everyBODY's someBODY.",
+    "ISSA-certified personal trainer serving Westbank New Orleans — weight training and nutrition coaching in person and online, custom meal plans, and workout programs for building strength. Where everyBODY's someBODY.",
 };
 
 export default function RootLayout({

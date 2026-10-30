@@ -26,8 +26,9 @@ export default function Home() {
             </h1>
             <div className="heat-edge w-40 mb-6" />
             <p className="font-body text-mist text-lg mb-8 max-w-md">
-              ISSA-certified training and nutrition coaching from Mikia Gumms —
-              in-person on the Westbank or online, wherever you are.
+              Weight training and nutrition coaching from ISSA-certified trainer
+              Mikia Gumms — built around getting strong, not just losing weight.
+              In-person on the Westbank or online, wherever you are.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -118,8 +119,9 @@ export default function Home() {
           </h2>
           <p className="font-body text-charcoal/80 leading-relaxed">
             We&apos;re a fitness brand that promotes health, wellness, and nutrition to all
-            age groups and body types. We provide a variety of meal plans, training sessions,
-            and independent workout plans. Our mission is to help you build a level of fitness
+            age groups and body types. We provide a variety of meal plans, weight training sessions,
+            and independent workout plans — focused on building strength and muscle, not
+            just chasing the scale. Our mission is to help you build a level of fitness
             that brings you peace with your health — and a mindset that says &ldquo;I will, I am,
             and I can do this.&rdquo;
           </p>

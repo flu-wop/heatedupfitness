@@ -87,9 +87,9 @@ export const SERVICES: Service[] = [
     price: "$250/mo",
     amount: 250,
     cadence: "monthly",
-    description: "Custom programming and nutrition guidance with weekly check-ins, fully remote.",
+    description: "Custom weight training programming and nutrition guidance with weekly check-ins, fully remote.",
     features: [
-      "Custom workout programming",
+      "Custom weight training programming",
       "Custom nutrition guidance",
       "Weekly check-ins via message",
       "Progress tracking",
@@ -104,7 +104,7 @@ export const SERVICES: Service[] = [
     price: "$500/mo", // PLACEHOLDER — confirm session count/frequency with Mikia
     amount: 500,
     cadence: "monthly",
-    description: "Train face-to-face at Anytime Fitness or your gym on the Westbank.",
+    description: "Weight training face-to-face at Anytime Fitness or your gym on the Westbank.",
     features: [
       "In-person sessions (Westbank NOLA)",
       "Everything in Online Coaching",

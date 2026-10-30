@@ -7,11 +7,9 @@ export default function Footer() {
     <footer className="bg-ink text-mist border-t border-white/10">
       <div className="mx-auto max-w-6xl px-6 py-12 grid grid-cols-1 gap-10 md:grid-cols-3">
         <div>
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-3">
             <Image src="/images/logo-mark.png" alt="HeatedUpFitness" width={56} height={56} className="h-14 w-14 object-contain" />
           </div>
-          <p className="text-sm leading-relaxed">{BUSINESS.tagline}</p>
-          <p className="text-xs mt-3 opacity-70">{BUSINESS.hashtag}</p>
         </div>
         <div>
           <h2 className="font-body font-semibold text-cream text-sm mb-3 uppercase tracking-wide">
