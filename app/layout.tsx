@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://heatedupfitness.vercel.app"),
   title: {
     default: "HeatedUpFitness | Personal Training with Mikia Gumms",
     template: "%s | HeatedUpFitness",
