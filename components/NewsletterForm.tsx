@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [already, setAlready] = useState(false);
   const [error, setError] = useState("");
 
   async function submit(e: React.FormEvent) {
@@ -19,6 +20,7 @@ export default function NewsletterForm() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Signup failed");
+      setAlready(!!data.already);
       setStatus("done");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Signup failed");
@@ -29,7 +31,9 @@ export default function NewsletterForm() {
   if (status === "done") {
     return (
       <p className="font-body text-cream" role="status">
-        You&apos;re on the list — watch your inbox.
+        {already
+          ? "You're already on the list — check your inbox (and spam) for the guide."
+          : "Check your inbox — the guide is on its way."}
       </p>
     );
   }

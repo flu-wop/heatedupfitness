@@ -12,6 +12,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   turbopack: {},
+  // The snack guide PDF is read from disk at runtime; make sure it ships with the function.
+  outputFileTracingIncludes: { "/api/newsletter": ["./private/**/*"] },
   // No remote images are used anywhere, so no remotePatterns: an open
   // "**" pattern would let anyone proxy arbitrary images through /_next/image.
   async headers() {

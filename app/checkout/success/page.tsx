@@ -19,7 +19,7 @@ export default async function Success({
       <div className="max-w-md">
         {mock === "1" && (
           <p className="mb-6 rounded-lg bg-ember/10 border border-ember/30 px-4 py-3 font-body text-xs text-charcoal/80">
-            <strong>Test mode:</strong> this was a mock checkout — nothing was charged.
+            <strong>Test mode:</strong>{" "}this was a mock checkout — nothing was charged.
           </p>
         )}
         <h1 className="font-display text-3xl text-plum mb-3">Welcome to the heat!</h1>
@@ -28,7 +28,7 @@ export default async function Success({
           Mikia will reach out at the email you used to get you started, or call{" "}
           {BUSINESS.phone}.
         </p>
-        <Link href="/" className="font-body font-semibold text-magenta hover:text-ember transition-colors">
+        <Link href="/" className="font-body font-semibold text-magenta hover:text-plum transition-colors">
           Back to home →
         </Link>
       </div>

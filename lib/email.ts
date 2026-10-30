@@ -1,4 +1,6 @@
 import { Resend } from "resend";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 
 let _resend: Resend | null = null;
 
@@ -132,6 +134,8 @@ export async function sendPlanPurchaseNotice(opts: {
   amount: number;
   customerEmail: string;
   customerName: string;
+  termsVersion?: string;
+  termsAcceptedAt?: string;
 }) {
   const ownerEmail = process.env.RESEND_TO_EMAIL;
   if (!ownerEmail) {
@@ -145,6 +149,34 @@ export async function sendPlanPurchaseNotice(opts: {
     from: `HeatedUpFitness <${from}>`,
     to: ownerEmail,
     subject: `New ${opts.planName} client — $${opts.amount} paid`,
-    html: `<p><strong>${esc(opts.customerName || "A new client")}</strong> (${esc(opts.customerEmail)}) paid <strong>$${opts.amount}</strong> in full for <strong>${esc(opts.planName)}</strong>. Reach out to start onboarding.</p>`,
+    html: `<p><strong>${esc(opts.customerName || "A new client")}</strong> (${esc(opts.customerEmail)}) paid <strong>$${opts.amount}</strong> in full for <strong>${esc(opts.planName)}</strong>. Reach out to start onboarding.</p>
+<p style="color:#888;font-size:12px">Agreed to Terms, Refund Policy and Waiver (version ${esc(opts.termsVersion || "unknown")}) at ${esc(opts.termsAcceptedAt || "unknown")}.</p>`,
   });
+}
+
+// Sends the free Healthy Snack Guide PDF as an attachment. The PDF lives in
+// /private (not /public) so it is only reachable through this email.
+// Throws on failure — the caller must not tell the visitor it was sent.
+export async function sendSnackGuide(to: string) {
+  const pdf = await readFile(path.join(process.cwd(), "private", "healthy-snack-guide.pdf"));
+  const resend = getResend();
+  const from = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+  const { error } = await resend.emails.send({
+    from: `HeatedUpFitness <${from}>`,
+    to,
+    subject: "Your Healthy Snack Guide is here",
+    html: `
+      <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; color:#201622;">
+        <h2 style="color:#C42D8E;">Here's your Healthy Snack Guide</h2>
+        <p>Thanks for signing up! Your guide is attached as a PDF: 15 easy snack ideas, a simple
+        protein-plus-produce rule, and a 30-minute weekly prep plan.</p>
+        <p>When you're ready for a plan built around your goals, you can book a free consult any time.</p>
+        <p style="color:#888;font-size:12px;">#stayheated &mdash; Mikia, HeatedUpFitness</p>
+      </div>
+    `,
+    attachments: [
+      { filename: "HeatedUpFitness-Healthy-Snack-Guide.pdf", content: pdf.toString("base64") },
+    ],
+  });
+  if (error) throw new Error(`Snack guide send failed: ${error.message}`);
 }

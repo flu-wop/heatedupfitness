@@ -7,6 +7,7 @@
 
 export const BUSINESS = {
   name: "HeatedUpFitness",
+  legalName: "HeatedUpFitness LLC",
   ownerName: "Mikia Gumms",
   tagline: "Where everyBODY's someBODY",
   email: "mikiagbusiness@gmail.com",

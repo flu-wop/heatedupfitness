@@ -59,6 +59,8 @@ export async function POST(req: NextRequest) {
           amount: (session.amount_total || 0) / 100,
           customerEmail: email,
           customerName: session.metadata?.customerName || "",
+          termsVersion: session.metadata?.termsVersion || "",
+          termsAcceptedAt: session.metadata?.termsAcceptedAt || "",
         });
       } catch (err: any) {
         console.error("[stripe-webhook] Plan order failed:", err);

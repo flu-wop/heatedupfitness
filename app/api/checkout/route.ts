@@ -37,6 +37,11 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
+      custom_text: {
+        submit: {
+          message: `By paying you agree to our Terms (${siteUrl}/legal/terms) and Refund Policy (${siteUrl}/legal/refund). Digital plan sales are final.`,
+        },
+      },
       metadata: { productId: product.id },
       success_url: `${siteUrl}/shop?success=true`,
       cancel_url: `${siteUrl}/shop?canceled=true`,

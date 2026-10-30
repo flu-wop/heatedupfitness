@@ -56,11 +56,6 @@ export default async function Checkout({
               <p className="font-body text-sm text-charcoal/70 mb-4">Checkout canceled — you weren&apos;t charged.</p>
             )}
             <CheckoutForm planId={plan.id} amount={plan.amount} mock={mock} />
-            <p className="font-body text-xs text-charcoal/70 mt-5">
-              By paying you agree to the <Link className="underline" href="/legal/terms">Terms</Link>,{" "}
-              <Link className="underline" href="/legal/refund">Refund Policy</Link> and{" "}
-              <Link className="underline" href="/legal/waiver">Liability Waiver</Link>.
-            </p>
           </div>
         </div>
       </section>

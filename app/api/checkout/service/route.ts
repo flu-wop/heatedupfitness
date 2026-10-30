@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { PAID_PLANS } from "@/lib/data";
+import { LEGAL } from "@/lib/legal";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: NextRequest) {
   try {
-    const { planId, name, email } = await req.json();
+    const { planId, name, email, agreed } = await req.json();
 
     // Amount always comes from the server-side plan list, never the client.
     const plan = PAID_PLANS.find((p) => p.id === planId);
@@ -17,6 +18,13 @@ export async function POST(req: NextRequest) {
     }
     if (typeof email !== "string" || !EMAIL_RE.test(email) || email.length > 200) {
       return NextResponse.json({ error: "Enter a valid email" }, { status: 400 });
+    }
+
+    if (agreed !== true) {
+      return NextResponse.json(
+        { error: "Please agree to the Terms, Refund Policy and Waiver to continue" },
+        { status: 400 }
+      );
     }
 
     if (process.env.TURSO_DATABASE_URL) {
@@ -48,7 +56,12 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
-      metadata: { planId: plan.id, customerName: name.trim() },
+      metadata: {
+        planId: plan.id,
+        customerName: name.trim(),
+        termsVersion: LEGAL.version, // version of Terms/Refund/Waiver the client accepted
+        termsAcceptedAt: new Date().toISOString(),
+      },
       success_url: `${siteUrl}/checkout/success?plan=${plan.id}&amount=${plan.amount}`,
       cancel_url: `${siteUrl}/checkout?plan=${plan.id}&canceled=true`,
     });
