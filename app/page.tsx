@@ -6,26 +6,13 @@ import MediaSlot from "@/components/MediaSlot";
 
 export default function Home() {
   const heroHasMedia = mediaExists(MEDIA.hero.video) || mediaExists(MEDIA.hero.poster);
+  const gallery = MEDIA.gallery.filter(mediaExists);
   return (
     <>
       {/* HERO */}
-      <section className={`relative bg-ink text-cream overflow-hidden grain ${heroHasMedia ? "min-h-[88vh] flex items-center" : ""}`}>
-        {heroHasMedia ? (
-          <>
-            <MediaSlot
-              video={MEDIA.hero.video}
-              image={MEDIA.hero.poster}
-              alt="Mikia Gumms training a client"
-              priority
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/10" />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent" />
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-plum-glow" />
-        )}
-        <div className={`relative mx-auto w-full max-w-6xl px-6 pt-20 pb-24 grid gap-12 items-center ${heroHasMedia ? "md:grid-cols-1" : "md:grid-cols-2"}`}>
+      <section className="relative bg-ink text-cream overflow-hidden grain">
+        <div className="absolute inset-0 bg-plum-glow" />
+        <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-20 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="font-body text-sm uppercase tracking-[0.2em] text-pink mb-4">
               {BUSINESS.hashtag} · Westbank New Orleans
@@ -55,7 +42,20 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          {!heroHasMedia && (
+          {heroHasMedia ? (
+            <div className="relative mx-auto w-full max-w-[300px] md:max-w-[340px]">
+              <div className="absolute inset-0 glow-ring rounded-[2rem]" />
+              <div className="relative aspect-[9/16] rounded-[2rem] overflow-hidden border border-white/15">
+                <MediaSlot
+                  video={MEDIA.hero.video}
+                  image={MEDIA.hero.poster}
+                  alt="Mikia Gumms training at the gym"
+                  priority
+                  sizes="340px"
+                />
+              </div>
+            </div>
+          ) : (
             <div className="relative aspect-square max-w-sm mx-auto">
               <div className="absolute inset-0 glow-ring rounded-full" />
               <Image
@@ -161,33 +161,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FULL-BLEED BAND */}
-      <section className="relative h-[55vh] min-h-[360px] bg-ink text-cream overflow-hidden">
-        <MediaSlot image={MEDIA.band} alt="Training session" label="Full-width photo" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/40" />
-        <div className="relative h-full mx-auto max-w-6xl px-6 flex items-end pb-12">
-          <p className="font-display text-4xl md:text-6xl leading-tight max-w-2xl">
-            I will. I am. <span className="text-heat-gradient">I can.</span>
+      {/* STATEMENT BAND */}
+      <section className="relative bg-ink text-cream overflow-hidden">
+        <div className="absolute inset-0 scale-110 blur-2xl opacity-60">
+          <MediaSlot image={MEDIA.band} alt="" label=" " sizes="640px" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-plum/50" />
+        <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <p className="font-display text-5xl md:text-7xl leading-[1.05] max-w-3xl">
+            I will. I am. <span className="text-heat-gradient whitespace-nowrap">I can.</span>
           </p>
+          <div className="heat-edge w-40 mt-6" />
         </div>
       </section>
 
       {/* GALLERY */}
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-6 py-20">
+          <p className="font-body text-sm uppercase tracking-[0.2em] text-magenta mb-3">Train · Fuel · Repeat</p>
           <h2 className="font-display text-3xl text-plum mb-10">Stay Heated</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {MEDIA.gallery.map((file, i) => (
-              <div
-                key={file}
-                className={`relative overflow-hidden rounded-xl bg-ink ${
-                  i === 0 || i === 5 ? "md:col-span-2 md:row-span-2 aspect-square" : "aspect-[4/5]"
-                }`}
-              >
-                <MediaSlot image={file} alt={`HeatedUpFitness training photo ${i + 1}`} label="Photo" />
+            {gallery.map((file, i) => (
+              <div key={file} className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ink card-lift">
+                <MediaSlot image={file} alt={`HeatedUpFitness photo ${i + 1}`} className={i === 0 ? "object-top" : ""} sizes="(min-width: 768px) 25vw, 50vw" />
               </div>
             ))}
           </div>
+          <Link href="/shop" className="inline-block mt-8 font-body font-semibold text-magenta hover:text-ember transition-colors">
+            Get the meal &amp; workout plans →
+          </Link>
         </div>
       </section>
 

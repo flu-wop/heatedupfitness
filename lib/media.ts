@@ -8,10 +8,10 @@ export const MEDIA = {
   portrait: "mikia-portrait.jpg",
   band: "band.jpg",
   reels: [
-    { video: "reel-1.mp4", poster: "reel-1.jpg", label: "Strength" },
-    { video: "reel-2.mp4", poster: "reel-2.jpg", label: "Conditioning" },
-    { video: "reel-3.mp4", poster: "reel-3.jpg", label: "Client wins" },
-    { video: "reel-4.mp4", poster: "reel-4.jpg", label: "Form check" },
+    { video: "reel-1.mp4", poster: "reel-1.jpg", label: "Core" },
+    { video: "reel-2.mp4", poster: "reel-2.jpg", label: "Physique" },
+    { video: "reel-3.mp4", poster: "reel-3.jpg", label: "Studio floor" },
+    { video: "reel-4.mp4", poster: "reel-4.jpg", label: "Meal prep" },
   ],
   gallery: [
     "gallery-1.jpg",
