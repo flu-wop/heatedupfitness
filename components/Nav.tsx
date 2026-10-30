@@ -53,15 +53,12 @@ export default function Nav() {
         <Link href="/" className="flex items-center gap-2.5 min-w-0">
           <Image
             src="/images/logo-mark.png"
-            alt=""
+            alt="HeatedUpFitness home"
             width={44}
             height={44}
             priority
-            className="h-11 w-11 shrink-0 object-contain"
+            className="h-12 w-12 shrink-0 object-contain"
           />
-          <span className="font-display text-2xl tracking-wide text-cream whitespace-nowrap">
-            HEATED<span className="text-heat-gradient">UP</span>
-          </span>
         </Link>
 
         {/* Desktop links */}
