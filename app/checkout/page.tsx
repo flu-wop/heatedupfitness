@@ -24,7 +24,7 @@ export default async function Checkout({
         </div>
       </section>
       <section className="bg-cream">
-        <div className="mx-auto max-w-4xl px-6 py-14 grid md:grid-cols-2 gap-8 items-start">
+        <div className="mx-auto max-w-4xl px-6 py-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div className="rounded-2xl bg-ink text-cream p-8 border border-white/10">
             <p className="font-body text-xs uppercase tracking-[0.2em] text-pink mb-2">Your plan</p>
             <h2 className="font-display text-2xl mb-1">{plan.name}</h2>

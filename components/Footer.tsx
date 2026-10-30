@@ -4,7 +4,7 @@ import { BUSINESS } from "@/lib/data";
 export default function Footer() {
   return (
     <footer className="bg-ink text-mist border-t border-white/10">
-      <div className="mx-auto max-w-6xl px-6 py-12 grid gap-10 md:grid-cols-3">
+      <div className="mx-auto max-w-6xl px-6 py-12 grid grid-cols-1 gap-10 md:grid-cols-3">
         <div>
           <div className="font-display text-xl text-cream mb-3">
             HEATED<span className="text-heat-gradient">UP</span>

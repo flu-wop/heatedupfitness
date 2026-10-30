@@ -49,7 +49,7 @@ export default function Waiver() {
           By signing below (digitally or in person), I confirm that I have read and
           understood this waiver and agree to its terms.
         </p>
-        <div className="mt-6 grid sm:grid-cols-2 gap-6 text-sm">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
           <div className="border-b border-charcoal/30 pb-1">Client Signature / Date</div>
           <div className="border-b border-charcoal/30 pb-1">Print Name</div>
         </div>

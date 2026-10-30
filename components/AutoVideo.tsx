@@ -34,6 +34,8 @@ export default function AutoVideo({ src, poster, className }: Props) {
       className={className}
       src={src}
       poster={poster}
+      aria-hidden="true"
+      tabIndex={-1}
       muted
       loop
       playsInline

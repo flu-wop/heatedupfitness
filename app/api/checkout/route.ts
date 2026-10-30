@@ -22,7 +22,8 @@ export async function POST(req: NextRequest) {
     }
 
     const stripe = getStripe();
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    // Never fall back to localhost in production: customers would land there after paying.
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || req.nextUrl.origin;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",

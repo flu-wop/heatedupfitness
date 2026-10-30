@@ -8,7 +8,7 @@ export default function About() {
   return (
     <>
       <section className="bg-ink text-cream grain">
-        <div className="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+        <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10">
             <MediaSlot
               image={MEDIA.portrait}
@@ -31,7 +31,7 @@ export default function About() {
       <section className="bg-cream">
         <div className="mx-auto max-w-4xl px-6 py-16">
           <h2 className="font-display text-2xl text-plum mb-8 text-center">Credentials</h2>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="rounded-2xl bg-white border border-plum/10 p-6 text-center shadow-sm">
               <p className="font-display text-2xl text-magenta mb-1">ISSA</p>
               <p className="font-body text-sm text-charcoal/70">Certified Personal Trainer</p>

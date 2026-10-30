@@ -44,7 +44,7 @@ export default function Shop() {
           {CATEGORIES.map((category) => (
             <div key={category}>
               <h2 className="font-display text-2xl text-plum mb-6">{category}</h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {PRODUCTS.filter((p) => p.category === category).map((product) => (
                   <div
                     key={product.id}

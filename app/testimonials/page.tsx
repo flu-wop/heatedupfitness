@@ -15,7 +15,7 @@ export default function Testimonials() {
       </section>
 
       <section className="bg-cream">
-        <div className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-6">
+        <div className="mx-auto max-w-5xl px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (
             <div key={i} className="card-lift rounded-2xl bg-white p-6 border border-plum/10 shadow-sm">
               <p className="font-body text-charcoal/70 italic mb-4">&ldquo;{t.quote}&rdquo;</p>

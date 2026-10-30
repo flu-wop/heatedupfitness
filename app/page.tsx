@@ -13,7 +13,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative bg-ink text-cream overflow-hidden grain">
         <div className="absolute inset-0 bg-plum-glow" />
-        <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-20 grid md:grid-cols-2 gap-12 items-center">
+        <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="font-body text-sm uppercase tracking-[0.2em] text-pink mb-4">
               {BUSINESS.hashtag} · Westbank New Orleans
@@ -87,7 +87,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-20">
           <p className="font-body text-sm uppercase tracking-[0.2em] text-pink mb-3">In the gym</p>
           <h2 className="font-display text-3xl md:text-4xl mb-10">See the work</h2>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-4 md:overflow-visible">
+          <div data-scroll-region className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:grid grid-cols-1 md:grid-cols-4 md:overflow-visible">
             {MEDIA.reels.map((reel, i) => (
               <figure
                 key={i}
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-20">
           <h2 className="font-display text-3xl mb-2">Train With Me</h2>
           <p className="text-mist font-body mb-10">Three ways to get started, in-person or online.</p>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {SERVICES.map((service) => (
               <div
                 key={service.id}
@@ -198,7 +198,7 @@ export default function Home() {
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <h2 className="font-display text-3xl text-plum mb-10">Real Results</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TESTIMONIALS.slice(0, 3).map((t, i) => (
               <div key={i} className="card-lift rounded-2xl bg-white p-6 border border-plum/10 shadow-sm">
                 <p className="font-body text-charcoal/70 italic mb-4">&ldquo;{t.quote}&rdquo;</p>

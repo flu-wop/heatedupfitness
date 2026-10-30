@@ -60,7 +60,7 @@ export default function Contact() {
       <section className="bg-cream">
         <div className="mx-auto max-w-2xl px-6 py-16">
           <form onSubmit={handleSubmit} className="space-y-5 bg-white rounded-2xl border border-plum/10 shadow-sm p-8">
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="font-body text-sm font-semibold text-charcoal block mb-1">Name</label>
                 <input
@@ -102,7 +102,7 @@ export default function Contact() {
                 <option>Virtual / Online</option>
               </select>
             </div>
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="font-body text-sm font-semibold text-charcoal block mb-1">
                   Preferred date
