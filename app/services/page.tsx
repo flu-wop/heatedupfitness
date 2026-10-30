@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { SERVICES, BUSINESS } from "@/lib/data";
 
+export const metadata = {
+  title: "Coaching & Services",
+  description: "1:1 online coaching ($250/mo) and in-person training ($500/mo) on the Westbank, plus self-guided plans.",
+};
+
 export default function Services() {
   return (
     <>

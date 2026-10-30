@@ -40,13 +40,13 @@ export default function CheckoutForm({
   return (
     <form onSubmit={submit} className="space-y-5">
       <div>
-        <label className="font-body text-sm font-semibold text-charcoal block mb-1">Full name</label>
-        <input required className={input} value={form.name} autoComplete="name"
+        <label htmlFor="co-name" className="font-body text-sm font-semibold text-charcoal block mb-1">Full name</label>
+        <input id="co-name" required className={input} value={form.name} autoComplete="name"
           onChange={(e) => setForm({ ...form, name: e.target.value })} />
       </div>
       <div>
-        <label className="font-body text-sm font-semibold text-charcoal block mb-1">Email</label>
-        <input required type="email" className={input} value={form.email} autoComplete="email"
+        <label htmlFor="co-email" className="font-body text-sm font-semibold text-charcoal block mb-1">Email</label>
+        <input id="co-email" required type="email" className={input} value={form.email} autoComplete="email"
           onChange={(e) => setForm({ ...form, email: e.target.value })} />
       </div>
       {mock && (

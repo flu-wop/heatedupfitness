@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { TESTIMONIALS } from "@/lib/data";
 
+export const metadata = {
+  title: "Results",
+  description: "Real client results and testimonials from HeatedUpFitness training and coaching.",
+};
+
 export default function Testimonials() {
   return (
     <>
@@ -20,11 +25,11 @@ export default function Testimonials() {
             <div key={i} className="card-lift rounded-2xl bg-white p-6 border border-plum/10 shadow-sm">
               <p className="font-body text-charcoal/70 italic mb-4">&ldquo;{t.quote}&rdquo;</p>
               <p className="font-body font-semibold text-plum text-sm">{t.name}</p>
-              <p className="font-body text-xs text-charcoal/50">{t.result}</p>
+              <p className="font-body text-xs text-charcoal/70">{t.result}</p>
             </div>
           ))}
         </div>
-        <p className="text-center font-body text-xs text-charcoal/40 pb-6">
+        <p className="text-center font-body text-xs text-charcoal/70 pb-6">
           All testimonials above are placeholders pending real client quotes and before/after photos.
         </p>
       </section>

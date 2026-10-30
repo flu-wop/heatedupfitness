@@ -49,6 +49,7 @@ export default function AdminBookings() {
         <form onSubmit={handleLogin} className="bg-white rounded-2xl border border-plum/10 shadow-sm p-8 max-w-sm w-full">
           <h1 className="font-display text-2xl text-plum mb-4">Admin Login</h1>
           <input
+            aria-label="Admin password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -95,7 +96,7 @@ export default function AdminBookings() {
               ))}
               {bookings.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="px-4 py-8 text-center text-charcoal/50">
+                  <td colSpan={7} className="px-4 py-8 text-center text-charcoal/70">
                     No bookings yet.
                   </td>
                 </tr>

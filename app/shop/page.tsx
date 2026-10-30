@@ -1,12 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PRODUCTS, Product } from "@/lib/data";
 
 const CATEGORIES = ["Meal Plans", "Workout Plans", "Challenges"] as const;
 
 export default function Shop() {
   const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [notice, setNotice] = useState<"success" | "canceled" | null>(null);
+
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (q.get("success")) setNotice("success");
+    else if (q.get("canceled")) setNotice("canceled");
+  }, []);
 
   async function handleBuy(product: Product) {
     if (product.price === 0) {
@@ -39,6 +46,14 @@ export default function Shop() {
         </div>
       </section>
 
+      {notice && (
+        <div role="status" className="bg-plum text-cream text-center font-body text-sm px-6 py-3">
+          {notice === "success"
+            ? "Thank you! Your plan is on its way — check your email."
+            : "Checkout canceled — you weren't charged."}
+        </div>
+      )}
+
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-6 py-16 space-y-16">
           {CATEGORIES.map((category) => (
@@ -56,7 +71,7 @@ export default function Shop() {
                     <p className="font-display text-xl text-magenta mb-3">
                       {product.priceLabel}
                     </p>
-                    <p className="font-body text-sm text-charcoal/60 mb-6 flex-1">
+                    <p className="font-body text-sm text-charcoal/70 mb-6 flex-1">
                       {product.description}
                     </p>
                     <button
@@ -76,7 +91,7 @@ export default function Shop() {
             </div>
           ))}
         </div>
-        <p className="text-center font-body text-xs text-charcoal/40 pb-10">
+        <p className="text-center font-body text-xs text-charcoal/70 pb-10">
           All plans and pricing shown are placeholders — confirm final content before launch.
         </p>
       </section>

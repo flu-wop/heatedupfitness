@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { PAID_PLANS, BUSINESS } from "@/lib/data";
 
-export const metadata = { title: "You're in | HeatedUpFitness" };
+export const metadata = {
+  title: "You're in",
+  description: "Your HeatedUpFitness signup is confirmed.",
+  robots: { index: false, follow: false },
+};
 
 export default async function Success({
   searchParams,

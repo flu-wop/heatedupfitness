@@ -62,8 +62,9 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-5 bg-white rounded-2xl border border-plum/10 shadow-sm p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="font-body text-sm font-semibold text-charcoal block mb-1">Name</label>
+                <label htmlFor="c-name" className="font-body text-sm font-semibold text-charcoal block mb-1">Name</label>
                 <input
+                id="c-name"
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -71,8 +72,9 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label className="font-body text-sm font-semibold text-charcoal block mb-1">Phone</label>
+                <label htmlFor="c-phone" className="font-body text-sm font-semibold text-charcoal block mb-1">Phone</label>
                 <input
+                id="c-phone"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
@@ -80,8 +82,9 @@ export default function Contact() {
               </div>
             </div>
             <div>
-              <label className="font-body text-sm font-semibold text-charcoal block mb-1">Email</label>
+              <label htmlFor="c-email" className="font-body text-sm font-semibold text-charcoal block mb-1">Email</label>
               <input
+                id="c-email"
                 type="email"
                 required
                 value={form.email}
@@ -90,10 +93,11 @@ export default function Contact() {
               />
             </div>
             <div>
-              <label className="font-body text-sm font-semibold text-charcoal block mb-1">
+              <label htmlFor="c-mode" className="font-body text-sm font-semibold text-charcoal block mb-1">
                 Training mode
               </label>
               <select
+                id="c-mode"
                 value={form.mode}
                 onChange={(e) => setForm({ ...form, mode: e.target.value })}
                 className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
@@ -104,10 +108,11 @@ export default function Contact() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="font-body text-sm font-semibold text-charcoal block mb-1">
+                <label htmlFor="c-date" className="font-body text-sm font-semibold text-charcoal block mb-1">
                   Preferred date
                 </label>
                 <input
+                id="c-date"
                   type="date"
                   required
                   value={form.date}
@@ -116,10 +121,11 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label className="font-body text-sm font-semibold text-charcoal block mb-1">
+                <label htmlFor="c-time" className="font-body text-sm font-semibold text-charcoal block mb-1">
                   Preferred time
                 </label>
                 <input
+                id="c-time"
                   type="time"
                   required
                   value={form.time}
@@ -129,10 +135,11 @@ export default function Contact() {
               </div>
             </div>
             <div>
-              <label className="font-body text-sm font-semibold text-charcoal block mb-1">
+              <label htmlFor="c-message" className="font-body text-sm font-semibold text-charcoal block mb-1">
                 What are your goals?
               </label>
               <textarea
+                id="c-message"
                 rows={4}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}

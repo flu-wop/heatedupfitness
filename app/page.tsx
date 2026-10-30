@@ -18,7 +18,7 @@ export default function Home() {
             <p className="font-body text-sm uppercase tracking-[0.2em] text-pink mb-4">
               {BUSINESS.hashtag} · Westbank New Orleans
             </p>
-            <h1 className="font-display text-5xl md:text-6xl leading-[1.05] mb-6">
+            <h1 className="font-display text-4xl min-[400px]:text-5xl md:text-6xl leading-[1.05] mb-6">
               Where every<span className="text-heat-gradient">BODY&apos;s</span>
               <br />
               some<span className="text-heat-gradient">BODY</span>
@@ -164,7 +164,7 @@ export default function Home() {
 
       {/* STATEMENT BAND */}
       <section className="relative bg-ink text-cream overflow-hidden">
-        <div className="absolute inset-0 scale-110 blur-2xl opacity-60">
+        <div data-scroll-region className="absolute inset-0 scale-110 blur-2xl opacity-60">
           <MediaSlot image={MEDIA.band} alt="" label=" " sizes="640px" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-plum/50" />
@@ -203,7 +203,7 @@ export default function Home() {
               <div key={i} className="card-lift rounded-2xl bg-white p-6 border border-plum/10 shadow-sm">
                 <p className="font-body text-charcoal/70 italic mb-4">&ldquo;{t.quote}&rdquo;</p>
                 <p className="font-body font-semibold text-plum text-sm">{t.name}</p>
-                <p className="font-body text-xs text-charcoal/50">{t.result}</p>
+                <p className="font-body text-xs text-charcoal/70">{t.result}</p>
               </div>
             ))}
           </div>

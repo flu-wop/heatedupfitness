@@ -4,6 +4,11 @@ import { CREDENTIALS, BUSINESS, TEAM_NO_FEARS } from "@/lib/data";
 import { MEDIA } from "@/lib/media";
 import MediaSlot from "@/components/MediaSlot";
 
+export const metadata = {
+  title: "About Mikia",
+  description: "Meet Mikia Gumms — ISSA-certified personal trainer and owner of HeatedUpFitness in Westbank New Orleans.",
+};
+
 export default function About() {
   return (
     <>
@@ -53,7 +58,7 @@ export default function About() {
           <p className="font-body text-mist text-sm leading-relaxed mb-2">
             {TEAM_NO_FEARS.blurb}
           </p>
-          <p className="font-body text-xs text-mist/60">
+          <p className="font-body text-xs text-mist/80">
             (Link to the Team No Fears / FitBudd app — placeholder until available)
           </p>
         </div>

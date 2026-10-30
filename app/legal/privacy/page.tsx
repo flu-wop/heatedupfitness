@@ -1,11 +1,16 @@
 import { BUSINESS } from "@/lib/data";
 
+export const metadata = {
+  title: "Privacy Policy",
+  description: "How HeatedUpFitness collects, uses, and protects your information.",
+};
+
 export default function Privacy() {
   return (
     <section className="bg-cream">
       <div className="mx-auto max-w-3xl px-6 py-20 font-body text-charcoal/80 leading-relaxed">
         <h1 className="font-display text-3xl text-plum mb-2">Privacy Policy</h1>
-        <p className="text-sm text-charcoal/50 mb-8">
+        <p className="text-sm text-charcoal/70 mb-8">
           Last updated: PLACEHOLDER — set to launch date. Have an attorney review before publishing.
         </p>
 
@@ -41,7 +46,7 @@ export default function Privacy() {
           Questions about this policy? Email {BUSINESS.email}.
         </p>
 
-        <p className="text-xs text-charcoal/40 mt-12">
+        <p className="text-xs text-charcoal/70 mt-12">
           PLACEHOLDER DOCUMENT — drafted as a starting point, not legal advice. Have this
           reviewed by an attorney before the site goes live.
         </p>

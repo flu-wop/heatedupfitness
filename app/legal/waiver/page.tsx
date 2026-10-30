@@ -1,11 +1,16 @@
 import { BUSINESS } from "@/lib/data";
 
+export const metadata = {
+  title: "Health & Liability Waiver",
+  description: "Health and liability waiver for HeatedUpFitness training clients.",
+};
+
 export default function Waiver() {
   return (
     <section className="bg-cream">
       <div className="mx-auto max-w-3xl px-6 py-20 font-body text-charcoal/80 leading-relaxed">
         <h1 className="font-display text-3xl text-plum mb-2">Health & Liability Waiver</h1>
-        <p className="text-sm text-charcoal/50 mb-8">
+        <p className="text-sm text-charcoal/70 mb-8">
           DRAFT — built from scratch since no waiver previously existed. This must be
           reviewed by an attorney and formally signed (digitally or on paper) by every
           client before their first session. Do not rely on this page alone as a substitute
@@ -54,7 +59,7 @@ export default function Waiver() {
           <div className="border-b border-charcoal/30 pb-1">Print Name</div>
         </div>
 
-        <p className="text-xs text-charcoal/40 mt-12">
+        <p className="text-xs text-charcoal/70 mt-12">
           PLACEHOLDER DOCUMENT — this is a standard-form starting point, not legal advice.
           Have an attorney review and, ideally, convert this into a proper e-signature flow
           before requiring clients to accept it.

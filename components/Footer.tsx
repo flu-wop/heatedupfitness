@@ -13,9 +13,9 @@ export default function Footer() {
           <p className="text-xs mt-3 opacity-70">{BUSINESS.hashtag}</p>
         </div>
         <div>
-          <h3 className="font-body font-semibold text-cream text-sm mb-3 uppercase tracking-wide">
+          <h2 className="font-body font-semibold text-cream text-sm mb-3 uppercase tracking-wide">
             Contact
-          </h3>
+          </h2>
           <ul className="space-y-2 text-sm">
             <li>
               <a href={`mailto:${BUSINESS.email}`} className="hover:text-cream">
@@ -31,9 +31,9 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="font-body font-semibold text-cream text-sm mb-3 uppercase tracking-wide">
+          <h2 className="font-body font-semibold text-cream text-sm mb-3 uppercase tracking-wide">
             Legal
-          </h3>
+          </h2>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="/legal/privacy" className="hover:text-cream">Privacy Policy</Link>
@@ -50,7 +50,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-xs opacity-60">
+      <div className="border-t border-white/10 py-6 text-center text-xs opacity-80">
         © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
         <span className="mt-1 block">
           Designed by{" "}

@@ -3,7 +3,19 @@ import { notFound } from "next/navigation";
 import { PAID_PLANS } from "@/lib/data";
 import CheckoutForm from "@/components/CheckoutForm";
 
-export const metadata = { title: "Checkout | HeatedUpFitness" };
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ plan?: string }>;
+}) {
+  const { plan } = await searchParams;
+  const found = PAID_PLANS.find((p) => p.id === plan);
+  return {
+    title: found ? `Checkout — ${found.name}` : "Checkout",
+    description: found ? `Sign up for ${found.name} with HeatedUpFitness.` : "Check out with HeatedUpFitness.",
+    robots: { index: false, follow: false },
+  };
+}
 
 export default async function Checkout({
   searchParams,
@@ -44,7 +56,7 @@ export default async function Checkout({
               <p className="font-body text-sm text-charcoal/70 mb-4">Checkout canceled — you weren&apos;t charged.</p>
             )}
             <CheckoutForm planId={plan.id} amount={plan.amount} mock={mock} />
-            <p className="font-body text-xs text-charcoal/50 mt-5">
+            <p className="font-body text-xs text-charcoal/70 mt-5">
               By paying you agree to the <Link className="underline" href="/legal/terms">Terms</Link>,{" "}
               <Link className="underline" href="/legal/refund">Refund Policy</Link> and{" "}
               <Link className="underline" href="/legal/waiver">Liability Waiver</Link>.
