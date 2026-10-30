@@ -10,7 +10,7 @@ export default function Shop() {
 
   async function handleBuy(product: Product) {
     if (product.price === 0) {
-      window.location.href = `/contact?freebie=${product.id}`;
+      window.location.href = "/#snack-guide";
       return;
     }
     setLoadingId(product.id);

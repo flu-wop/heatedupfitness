@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BUSINESS, CREDENTIALS, SERVICES, TESTIMONIALS, TEAM_NO_FEARS } from "@/lib/data";
 import { MEDIA, mediaExists } from "@/lib/media";
 import MediaSlot from "@/components/MediaSlot";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default function Home() {
   const heroHasMedia = mediaExists(MEDIA.hero.video) || mediaExists(MEDIA.hero.poster);
@@ -213,27 +214,14 @@ export default function Home() {
       </section>
 
       {/* EMAIL CAPTURE */}
-      <section className="bg-plum text-cream">
+      <section id="snack-guide" className="bg-plum text-cream scroll-mt-16">
         <div className="mx-auto max-w-2xl px-6 py-20 text-center">
           <h2 className="font-display text-3xl mb-3">Get the Free Snack Guide</h2>
           <p className="font-body text-mist mb-8">
             Sign up and we&apos;ll send you the Healthy Snack Guide, plus updates on new
             plans and challenges.
           </p>
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              required
-              placeholder="Email address"
-              className="flex-1 rounded-full px-5 py-3 text-charcoal font-body focus:outline-none focus:ring-2 focus:ring-ember"
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-heat-gradient px-6 py-3 font-body font-semibold text-ink hover:opacity-90 transition-opacity"
-            >
-              Sign Up
-            </button>
-          </form>
+          <NewsletterForm />
         </div>
       </section>
     </>
