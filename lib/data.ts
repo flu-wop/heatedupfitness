@@ -43,9 +43,9 @@ as a passive, on-demand option alongside her direct coaching.`,
 
 // ---------------------------------------------------------------------------
 // SERVICES / COACHING TIERS — pricing is a PLACEHOLDER recommendation.
-// Her current rate was $150/mo. Suggested structure below gives room for a
-// lower-commitment tier and prices the in-person/full-service tier above her
-// old flat rate to reflect 4 years + ISSA cert. Confirm all three with her.
+// Rates set by James (Oct 2026): Online $250/mo, In-Person $500/mo.
+// `amount` is whole dollars charged in full at checkout — the server reads it
+// from here, never from the client.
 // ---------------------------------------------------------------------------
 export const SERVICES = [
   {
@@ -66,8 +66,8 @@ export const SERVICES = [
   {
     id: "coaching",
     name: "1:1 Online Coaching",
-    price: "$175/mo", // PLACEHOLDER — was $150/mo flat; suggested bump reflects
-                       // cert + experience and adds structured check-ins
+    price: "$250/mo",
+    amount: 250,
     cadence: "monthly",
     description: "Custom programming and nutrition guidance with weekly check-ins, fully remote.",
     features: [
@@ -77,13 +77,14 @@ export const SERVICES = [
       "Progress tracking",
     ],
     cta: "Start Coaching",
-    ctaHref: "/contact",
+    ctaHref: "/checkout?plan=coaching",
     featured: true,
   },
   {
     id: "in-person",
     name: "In-Person Training",
-    price: "$250/mo", // PLACEHOLDER — confirm session count/frequency with Mikia
+    price: "$500/mo", // PLACEHOLDER — confirm session count/frequency with Mikia
+    amount: 500,
     cadence: "monthly",
     description: "Train face-to-face at Anytime Fitness or your gym on the Westbank.",
     features: [
@@ -91,11 +92,16 @@ export const SERVICES = [
       "Everything in Online Coaching",
       "Hands-on form correction",
     ],
-    cta: "Book a Consult",
-    ctaHref: "/contact",
+    cta: "Start Training",
+    ctaHref: "/checkout?plan=in-person",
     featured: false,
   },
 ];
+
+export type Plan = (typeof SERVICES)[number] & { amount: number };
+export const PAID_PLANS = SERVICES.filter(
+  (s): s is Plan => typeof (s as { amount?: number }).amount === "number"
+);
 
 // ---------------------------------------------------------------------------
 // SHOP — replaces the old 14-product Squarespace grid. All PLACEHOLDER —

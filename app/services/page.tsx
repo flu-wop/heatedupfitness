@@ -52,9 +52,6 @@ export default function Services() {
             </div>
           ))}
         </div>
-        <p className="text-center font-body text-xs text-charcoal/40 pb-10 -mt-8">
-          Pricing shown is a suggested placeholder — confirm final rates before launch.
-        </p>
       </section>
     </>
   );

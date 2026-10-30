@@ -101,3 +101,26 @@ export async function sendProductDelivery(opts: { to: string; productName: strin
     `,
   });
 }
+
+// Tell Mikia a coaching/training plan was paid for so she can start onboarding.
+export async function sendPlanPurchaseNotice(opts: {
+  planName: string;
+  amount: number;
+  customerEmail: string;
+  customerName: string;
+}) {
+  const ownerEmail = process.env.RESEND_TO_EMAIL;
+  if (!ownerEmail) {
+    console.error("[plan-purchase] RESEND_TO_EMAIL not set — cannot notify:", opts);
+    return;
+  }
+  const resend = getResend();
+  const from = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+  const esc = (v: string) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]!));
+  await resend.emails.send({
+    from: `HeatedUpFitness <${from}>`,
+    to: ownerEmail,
+    subject: `New ${opts.planName} client — $${opts.amount} paid`,
+    html: `<p><strong>${esc(opts.customerName || "A new client")}</strong> (${esc(opts.customerEmail)}) paid <strong>$${opts.amount}</strong> in full for <strong>${esc(opts.planName)}</strong>. Reach out to start onboarding.</p>`,
+  });
+}
