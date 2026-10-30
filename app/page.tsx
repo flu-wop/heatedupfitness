@@ -52,7 +52,7 @@ export default function Home() {
                 <MediaSlot
                   video={MEDIA.hero.video}
                   image={MEDIA.hero.poster}
-                  alt="Mikia Gumms training at the gym"
+                  alt="Mikia Gumms in a HeatedUp tank at the gym"
                   priority
                   sizes="340px"
                 />
