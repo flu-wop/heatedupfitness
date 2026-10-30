@@ -122,7 +122,7 @@ export default function Home() {
             that brings you peace with your health — and a mindset that says &ldquo;I will, I am,
             and I can do this.&rdquo;
           </p>
-          <Link href="/about" className="inline-block mt-6 font-body font-semibold text-magenta hover:text-ember transition-colors">
+          <Link href="/about" className="inline-block mt-6 font-body font-semibold text-magenta hover:text-plum transition-colors">
             Read Mikia&apos;s story →
           </Link>
         </div>
@@ -145,7 +145,7 @@ export default function Home() {
               >
                 <h3 className="font-display text-xl mb-1">{service.name}</h3>
                 <p className="font-body font-semibold mb-3">{service.price}</p>
-                <p className={`font-body text-sm mb-4 ${service.featured ? "text-ink/80" : "text-mist"}`}>
+                <p className={`font-body text-sm mb-4 ${service.featured ? "text-ink" : "text-mist"}`}>
                   {service.description}
                 </p>
                 <Link
@@ -188,7 +188,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Link href="/shop" className="inline-block mt-8 font-body font-semibold text-magenta hover:text-ember transition-colors">
+          <Link href="/shop" className="inline-block mt-8 font-body font-semibold text-magenta hover:text-plum transition-colors">
             Get the meal &amp; workout plans →
           </Link>
         </div>
@@ -207,7 +207,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Link href="/testimonials" className="inline-block mt-8 font-body font-semibold text-magenta hover:text-ember transition-colors">
+          <Link href="/testimonials" className="inline-block mt-8 font-body font-semibold text-magenta hover:text-plum transition-colors">
             See more results →
           </Link>
         </div>

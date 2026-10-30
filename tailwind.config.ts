@@ -10,7 +10,7 @@ const config: Config = {
       colors: {
         ink: "#150B1A",       // near-black plum — dark section bg
         plum: "#3B1550",      // deep purple base
-        magenta: "#C42D8E",   // primary brand color (from logo)
+        magenta: "#C42D8E",   // brand color from logo — solid use only; gradients start at #DA41A3 so dark text passes AA
         "magenta-light": "#E14FAA",
         pink: "#F2679A",      // secondary accent
         ember: "#FF7A45",     // heat accent — CTAs, energy
@@ -24,7 +24,7 @@ const config: Config = {
         body: ["var(--font-body)"],
       },
       backgroundImage: {
-        "heat-gradient": "linear-gradient(90deg, #C42D8E 0%, #FF7A45 100%)",
+        "heat-gradient": "linear-gradient(90deg, #DA41A3 0%, #FF7A45 100%)",
         "plum-glow": "radial-gradient(circle at 50% 30%, rgba(196,45,142,0.35), transparent 60%)",
       },
     },

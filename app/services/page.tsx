@@ -33,7 +33,7 @@ export default function Services() {
             >
               <h2 className="font-display text-2xl mb-1">{service.name}</h2>
               <p className="font-body text-2xl font-bold mb-4">{service.price}</p>
-              <p className={`font-body text-sm mb-6 ${service.featured ? "text-ink/80" : "text-charcoal/70"}`}>
+              <p className={`font-body text-sm mb-6 ${service.featured ? "text-ink" : "text-charcoal/70"}`}>
                 {service.description}
               </p>
               <ul className="font-body text-sm space-y-2 mb-8 flex-1">

@@ -68,7 +68,7 @@ export default function Contact() {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
+                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-magenta"
                 />
               </div>
               <div>
@@ -77,7 +77,7 @@ export default function Contact() {
                 id="c-phone"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
+                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-magenta"
                 />
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function Contact() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
+                className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-magenta"
               />
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function Contact() {
                 id="c-mode"
                 value={form.mode}
                 onChange={(e) => setForm({ ...form, mode: e.target.value })}
-                className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
+                className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-magenta"
               >
                 <option>In-person</option>
                 <option>Virtual / Online</option>
@@ -117,7 +117,7 @@ export default function Contact() {
                   required
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
-                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
+                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-magenta"
                 />
               </div>
               <div>
@@ -130,7 +130,7 @@ export default function Contact() {
                   required
                   value={form.time}
                   onChange={(e) => setForm({ ...form, time: e.target.value })}
-                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
+                  className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-magenta"
                 />
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Contact() {
                 rows={4}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-ember"
+                className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body focus:outline-none focus:ring-2 focus:ring-magenta"
               />
             </div>
             <button

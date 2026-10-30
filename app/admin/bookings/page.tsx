@@ -54,7 +54,7 @@ export default function AdminBookings() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Admin password"
-            className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body mb-4 focus:outline-none focus:ring-2 focus:ring-ember"
+            className="w-full rounded-lg border border-plum/20 px-4 py-2.5 font-body mb-4 focus:outline-none focus:ring-2 focus:ring-magenta"
           />
           {error && <p className="text-sm text-red-600 mb-4">{error}</p>}
           <button className="w-full rounded-full bg-heat-gradient px-6 py-2.5 font-body font-semibold text-ink">
