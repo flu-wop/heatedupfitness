@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CREDENTIALS, BUSINESS, TEAM_NO_FEARS } from "@/lib/data";
+import { CREDENTIALS, BUSINESS } from "@/lib/data";
 import { MEDIA } from "@/lib/media";
 import MediaSlot from "@/components/MediaSlot";
 
@@ -51,18 +51,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* TEAM NO FEARS — secondary credibility mention, not a competing CTA */}
-      <section className="bg-plum text-cream">
-        <div className="mx-auto max-w-3xl px-6 py-14 text-center">
-          <h2 className="font-display text-xl mb-3">{TEAM_NO_FEARS.label}</h2>
-          <p className="font-body text-mist text-sm leading-relaxed mb-2">
-            {TEAM_NO_FEARS.blurb}
-          </p>
-          <p className="font-body text-xs text-mist/80">
-            (Link to the Team No Fears / FitBudd app — placeholder until available)
-          </p>
-        </div>
-      </section>
 
       <section className="bg-ink text-cream text-center">
         <div className="mx-auto max-w-2xl px-6 py-16">

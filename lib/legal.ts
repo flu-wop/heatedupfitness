@@ -262,7 +262,7 @@ export const PRIVACY: LegalSection[] = [
   {
     heading: "Links to other sites",
     body: [
-      "Our site may link to other services, such as the Team No Fears app. Those have their own privacy practices, and this policy does not cover them.",
+      "Our site may link to other services. Those have their own privacy practices, and this policy does not cover them.",
     ],
   },
   {

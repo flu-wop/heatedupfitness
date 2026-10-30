@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BUSINESS, CREDENTIALS, SERVICES, TESTIMONIALS, TEAM_NO_FEARS } from "@/lib/data";
+import { BUSINESS, CREDENTIALS, SERVICES, TESTIMONIALS } from "@/lib/data";
 import { MEDIA, mediaExists } from "@/lib/media";
 import MediaSlot from "@/components/MediaSlot";
 import NewsletterForm from "@/components/NewsletterForm";
@@ -79,8 +79,6 @@ export default function Home() {
           <span className="font-semibold">{CREDENTIALS.certification}</span>
           <span className="opacity-60">|</span>
           <span>{CREDENTIALS.yearsExperience}+ Years Experience</span>
-          <span className="opacity-60">|</span>
-          <span>{TEAM_NO_FEARS.label}</span>
         </div>
       </section>
 

@@ -31,17 +31,6 @@ my junior year in high school, and after I've seen how defined my abs were looki
 into a fitness freak. Start your fitness and health journey with me!`,
 };
 
-// Team No Fears — credibility line, not a competing CTA. Content is already
-// produced (videos + 2 weeks of meal plans), so it's passive/no ongoing time
-// cost to Mikia — safe to give it real (but secondary) visibility.
-export const TEAM_NO_FEARS = {
-  label: "Also coaching on Team No Fears",
-  blurb: `Mikia is a coach on Team No Fears, a Westbank-based training team built on the
-FitBudd app. Her pre-recorded workout library and two-week meal plans are available there
-as a passive, on-demand option alongside her direct coaching.`,
-  url: "#", // PLACEHOLDER — add real FitBudd/Team No Fears app link when available
-};
-
 // ---------------------------------------------------------------------------
 // SERVICES / COACHING TIERS — pricing is a PLACEHOLDER recommendation.
 // Rates set by James (Oct 2026): Online $250/mo, In-Person $500/mo.
