@@ -4,6 +4,7 @@ import { BUSINESS, CREDENTIALS, SERVICES, TESTIMONIALS, TEAM_NO_FEARS } from "@/
 import { MEDIA, mediaExists } from "@/lib/media";
 import MediaSlot from "@/components/MediaSlot";
 import NewsletterForm from "@/components/NewsletterForm";
+import Price from "@/components/Price";
 
 export default function Home() {
   const heroHasMedia = mediaExists(MEDIA.hero.video) || mediaExists(MEDIA.hero.poster);
@@ -144,7 +145,7 @@ export default function Home() {
                 }`}
               >
                 <h3 className="font-display text-xl mb-1">{service.name}</h3>
-                <p className="font-body font-semibold mb-3">{service.price}</p>
+                <Price price={service.price} was={service.wasPrice} note={service.priceNote} className="font-body font-semibold mb-3" />
                 <p className={`font-body text-sm mb-4 ${service.featured ? "text-ink" : "text-mist"}`}>
                   {service.description}
                 </p>

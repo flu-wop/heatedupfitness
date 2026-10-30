@@ -11,6 +11,42 @@
 body {
   background-color: #FFF6EF;
   color: #201622;
+  /* Safety net: if anything ever overflows sideways, clip it instead of letting
+     iOS Safari zoom the whole page out (which shrinks the header and shows margins). */
+  overflow-x: clip;
+}
+
+/* iOS/iPadOS Safari gives date and time inputs an intrinsic width wider than their
+   container, which pushed the contact form past the card edge. Reset the native
+   appearance, let them shrink, and keep a real tap height. */
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 2.75rem;
+  background-color: #fff;
+  color: #201622;
+  text-align: left;
+}
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.25em;
+}
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233B1550' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.75rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 @layer utilities {

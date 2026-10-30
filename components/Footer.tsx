@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BUSINESS } from "@/lib/data";
 
@@ -6,8 +7,11 @@ export default function Footer() {
     <footer className="bg-ink text-mist border-t border-white/10">
       <div className="mx-auto max-w-6xl px-6 py-12 grid grid-cols-1 gap-10 md:grid-cols-3">
         <div>
-          <div className="font-display text-xl text-cream mb-3">
-            HEATED<span className="text-heat-gradient">UP</span>
+          <div className="flex items-center gap-3 mb-3">
+            <Image src="/images/logo-mark.png" alt="" width={56} height={56} className="h-14 w-14 object-contain" />
+            <div className="font-display text-xl text-cream">
+              HEATED<span className="text-heat-gradient">UP</span>
+            </div>
           </div>
           <p className="text-sm leading-relaxed">{BUSINESS.tagline}</p>
           <p className="text-xs mt-3 opacity-70">{BUSINESS.hashtag}</p>

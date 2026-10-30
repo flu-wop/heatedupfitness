@@ -48,11 +48,28 @@ as a passive, on-demand option alongside her direct coaching.`,
 // `amount` is whole dollars charged in full at checkout — the server reads it
 // from here, never from the client.
 // ---------------------------------------------------------------------------
-export const SERVICES = [
+export type Service = {
+  id: string;
+  name: string;
+  price: string;
+  wasPrice?: string; // regular price shown struck through next to a launch price
+  priceNote?: string;
+  amount?: number; // whole dollars charged at checkout (paid coaching tiers)
+  cadence: string;
+  description: string;
+  features: string[];
+  cta: string;
+  ctaHref: string;
+  featured: boolean;
+};
+
+export const SERVICES: Service[] = [
   {
     id: "self-guided",
     name: "Self-Guided Plans",
-    price: "From $18",
+    price: "$35",
+    wasPrice: "$50", // launch price; regular price is $50
+    priceNote: "per plan · shorter programs from $25",
     cadence: "one-time",
     description: "Done-for-you workout and meal plans you follow on your own schedule.",
     features: [
@@ -99,10 +116,8 @@ export const SERVICES = [
   },
 ];
 
-export type Plan = (typeof SERVICES)[number] & { amount: number };
-export const PAID_PLANS = SERVICES.filter(
-  (s): s is Plan => typeof (s as { amount?: number }).amount === "number"
-);
+export type Plan = Service & { amount: number };
+export const PAID_PLANS = SERVICES.filter((s): s is Plan => typeof s.amount === "number");
 
 // ---------------------------------------------------------------------------
 // SHOP — replaces the old 14-product Squarespace grid. All PLACEHOLDER —
@@ -114,6 +129,7 @@ export type Product = {
   name: string;
   price: number; // 0 = free
   priceLabel: string;
+  regularLabel?: string; // regular price shown struck through next to a launch price
   description: string;
 };
 
@@ -122,16 +138,18 @@ export const PRODUCTS: Product[] = [
     id: "meal-muscle-4wk",
     category: "Meal Plans",
     name: "4-Week Muscle Building Meal Plan",
-    price: 25,
-    priceLabel: "$25",
+    price: 35,
+    priceLabel: "$35",
+    regularLabel: "$50",
     description: "A four-week meal plan built to fuel muscle growth and recovery.",
   },
   {
     id: "meal-fatloss-4wk",
     category: "Meal Plans",
     name: "4-Week Fat Loss Meal Plan",
-    price: 25,
-    priceLabel: "$25",
+    price: 35,
+    priceLabel: "$35",
+    regularLabel: "$50",
     description: "A four-week meal plan designed for sustainable fat loss.",
   },
   {
@@ -146,32 +164,36 @@ export const PRODUCTS: Product[] = [
     id: "workout-fullbody",
     category: "Workout Plans",
     name: "HeatedUp Full-Body Program",
-    price: 20,
-    priceLabel: "$20",
+    price: 35,
+    priceLabel: "$35",
+    regularLabel: "$50",
     description: "A 4-week full-body training program for all levels.",
   },
   {
     id: "workout-glutes",
     category: "Workout Plans",
     name: "Glute Focus Program",
-    price: 20,
-    priceLabel: "$20",
+    price: 35,
+    priceLabel: "$35",
+    regularLabel: "$50",
     description: "A 4-week program focused on lower body strength and shape.",
   },
   {
     id: "workout-core",
     category: "Workout Plans",
     name: "Core & Abs Intensive",
-    price: 18,
-    priceLabel: "$18",
+    price: 25,
+    priceLabel: "$25",
+    regularLabel: "$35",
     description: "A 21-day core-focused program to build strength and definition.",
   },
   {
     id: "workout-arms",
     category: "Workout Plans",
     name: "Arm Definition Program",
-    price: 18,
-    priceLabel: "$18",
+    price: 25,
+    priceLabel: "$25",
+    regularLabel: "$35",
     description: "A 3-week program targeting arm strength and tone.",
   },
   {
@@ -180,6 +202,7 @@ export const PRODUCTS: Product[] = [
     name: '"Too Hot" Fitness Challenge — At-Home Edition',
     price: 25,
     priceLabel: "$25",
+    regularLabel: "$35",
     description: "A full-body, glute, and ab-focused challenge you can do at home.",
   },
   {
@@ -188,6 +211,7 @@ export const PRODUCTS: Product[] = [
     name: '"Too Hot" Fitness Challenge — Gym Edition',
     price: 25,
     priceLabel: "$25",
+    regularLabel: "$35",
     description: "The same challenge, built out for a full gym setup.",
   },
 ];

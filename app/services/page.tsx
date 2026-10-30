@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SERVICES, BUSINESS } from "@/lib/data";
+import Price from "@/components/Price";
 
 export const metadata = {
   title: "Coaching & Services",
@@ -32,7 +33,7 @@ export default function Services() {
               }`}
             >
               <h2 className="font-display text-2xl mb-1">{service.name}</h2>
-              <p className="font-body text-2xl font-bold mb-4">{service.price}</p>
+              <Price price={service.price} was={service.wasPrice} note={service.priceNote} className="font-body text-2xl font-bold mb-4" />
               <p className={`font-body text-sm mb-6 ${service.featured ? "text-ink" : "text-charcoal/70"}`}>
                 {service.description}
               </p>

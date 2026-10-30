@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { PRODUCTS, Product } from "@/lib/data";
+import Price from "@/components/Price";
 
 const CATEGORIES = ["Meal Plans", "Workout Plans", "Challenges"] as const;
 
@@ -68,9 +69,7 @@ export default function Shop() {
                     <h3 className="font-body font-semibold text-charcoal mb-1">
                       {product.name}
                     </h3>
-                    <p className="font-display text-xl text-magenta mb-3">
-                      {product.priceLabel}
-                    </p>
+                    <Price price={product.priceLabel} was={product.regularLabel} className="font-display text-xl text-magenta mb-3" />
                     <p className="font-body text-sm text-charcoal/70 mb-6 flex-1">
                       {product.description}
                     </p>
